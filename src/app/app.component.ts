@@ -9,10 +9,7 @@ import { Ong } from './Ong';
 })
 
 export class AppComponent{
-  //Iniciar mapa
-  ngOnInit(){
-
-  }
+  
   //Obtener punto central
   calculateAveragePosition(ongs: Ong[]) {
     if (ongs.length === 0) {
@@ -31,22 +28,25 @@ export class AppComponent{
   
     return { lat: averageLat, lng: averageLng };
   }
-
+  
   //Personalización del marcardor
   iconBase:string ="https://developers.google.com/static/maps/documentation/javascript/images/default-marker.png?hl=es-419";
-  
+  text:string = "<p>Telefono: 123456</p> <p>Correo: test@gmail.com</p>"
   //Función para generar ventana de información
   openInfoWindow(ong: Ong) {
     Swal.fire({
-      title: ong.nombre_proyecto,
-      text: ong.nombre_institucion,
+      title: ong.nombre_institucion,
+      html: this.text,
+      // text: "Email: "+ ong.correo + "\n\nTeléfono: "+ong.celular[0]+"\nDirección: "+ong.direccion.detalle,
       imageUrl: ong.dir_img,
-      imageWidth: 300,
-      imageHeight: 150,
-      imageAlt: ong.dir_img,
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: "Image",
     })
   }
-
+  print(){
+    console.log("salto\nde linea")
+  }
   //Declarar lista de ongs
   Ongs:Ong[] =[
     {
@@ -61,7 +61,7 @@ export class AppComponent{
           provincia:"Santiago de Surco",
           distrito:"Lima",
       },
-      dir_img:"assets/images/ASOCIACIÓN RUWAN PERU.jfif",
+      dir_img:"../assets/images/ASOCIACIÓN RUWAN PERU.jfif",
       nombre_proyecto:"Piloto construyendo una escuela para el mañana",
       sector: ["Ambiente", "Educación"],
       estado:"En inicio",
