@@ -1,6 +1,6 @@
-<button (click)="addMarker()">Crear marcador</button>
+<button>Crear marcador</button>
 
-<google-map [center]="center" width="80%" height="600px"> 
+<google-map [center]="center" [zoom]="zoom" width="80%" height="600px"> 
   <ng-container>
     <map-marker #marker="mapMarker"
       *ngFor="let ong of Ongs"
