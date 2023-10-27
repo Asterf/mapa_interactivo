@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { Marker } from './Marker';
 import Swal from 'sweetalert2';
 import { Ong } from './Ong';
 @Component({
@@ -9,29 +8,26 @@ import { Ong } from './Ong';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent{
+  //Iniciar mapa
+  ngOnInit(){
 
-  //Lista de marcadores
-  markers:Marker[] = []
-  center = {
-    lat: -13.515271483270629,
-    lng: -71.97872042823884
   }
   //Obtener punto central
-  calculateAveragePosition(markers: Marker[]) {
-    if (markers.length === 0) {
+  calculateAveragePosition(ongs: Ong[]) {
+    if (ongs.length === 0) {
       return {lat:-13.515271483270629, lng: -71.97872042823884}; // Retorna null si la lista de marcadores está vacía.
     }
     let sumLat = 0;
     let sumLng = 0;
   
-    for (const marker of markers) {
-      sumLat += marker.position.lat;
-      sumLng += marker.position.lng;
+    for (const ong of ongs) {
+      sumLat += ong.posicion.lat;
+      sumLng += ong.posicion.lng;
     }
   
-    const averageLat = sumLat / markers.length;
-    const averageLng = sumLng / markers.length;
+    const averageLat = sumLat / ongs.length;
+    const averageLng = sumLng / ongs.length;
   
     return { lat: averageLat, lng: averageLng };
   }
@@ -51,21 +47,6 @@ export class AppComponent {
     })
   }
 
-  //Función para agregar un nuevo marcador con posición aleatoria
-  addMarker() {
-    this.markers.push({
-      position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 1000,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 1000,
-      },
-      label: {
-        color: 'black',
-        text: ' ',
-      },
-      title: 'Marker title ' + (this.markers.length + 1),
-    });
-    this.center= this.calculateAveragePosition(this.markers)
-  }
   //Declarar lista de ongs
   Ongs:Ong[] =[
     {
@@ -111,4 +92,7 @@ export class AppComponent {
       }
     }
   ]
+  //Acomodar mapa
+  center = this.calculateAveragePosition(this.Ongs)
+  zoom:number = 6.5
 }
