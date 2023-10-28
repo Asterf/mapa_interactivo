@@ -1,21 +1,9 @@
-<button (click)="print()">Crear marcador</button>
+<header>
+  <app-header></app-header>
+</header>
 
-<google-map [center]="center" [zoom]="zoom" width="80%" height="600px"> 
-  <ng-container>
-    <map-marker #marker="mapMarker"
-      *ngFor="let ong of Ongs"
-      [label]="{
-        color:'black',
-        text:' '
-      }"
-      [position]="ong.posicion"
-      [title]="ong.nombre_institucion"
-      [icon]="iconBase"
-      (mapClick)="openInfoWindow(ong)" 
-      >
-      <map-info-window #infoWindow="mapInfoWindow"> 
-        Content of {{ong.nombre_proyecto}}
-      </map-info-window>
-    </map-marker>
-  </ng-container>
-</google-map>
+<div class="content">
+  <app-mapa></app-mapa>
+</div>
+
+<app-footer></app-footer>
