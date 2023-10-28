@@ -1,0 +1,23 @@
+<button  (click)="print()">BUSCAR SOLO CUSCO</button>
+<google-map [center]="center" [zoom]="zoom" width="100%" height="600px"> 
+  <map-marker-clusterer [imagePath]="markerClustererImagePath">
+    <map-marker #firstMarker="mapMarker" 
+      [position]="center">
+    </map-marker>
+    <map-marker #marker="mapMarker"
+      *ngFor="let ong of ongs"
+      [label]="{
+        color:'black',
+        text:' '
+      }"
+      [position]="ong.posicion"
+      [title]="ong.nombre_institucion"
+      [icon]="iconBase"
+      (mapClick)="openInfoWindow(ong)" 
+      >
+      <map-info-window #infoWindow="mapInfoWindow"> 
+        Content of {{ong.nombre_proyecto}}
+      </map-info-window>
+    </map-marker>
+  </map-marker-clusterer>
+</google-map>
