@@ -1,21 +1,36 @@
 export interface Ong{
+    index:number,
     nombre_institucion:string,
     tipo_entidad:string,
-    representante:string,
-    celular:string[],
-    correo:string,
+    representante:string[],
+    telefono:string[],
+    correo:string[],
     enlace_web:string,
     direccion:{
         detalle:string,
         provincia:string,
         distrito:string,
     },
-    dir_img:string,
-    nombre_proyecto:string,
-    sector: string[],
-    estado:string,
-    posicion:{
+    proyectos:{
+        nombre_proyecto:string,
+        objetivos:string[],
+        ambito_intervencion:{
+            distrito:string,
+            provincia:string
+        },
+        presupuesto: string,
+        periodo_ejecucion:{
+            inicio:string,
+            fin:string
+        },
+        sector:string[],
+        total_benef:string,
+        estado:string
+    }[],
+    fuentes_coperantes:string[],
+    cordenadas:{
         lat:number,
         lng:number
-    }
+    },
+    dir_image:string
 }
