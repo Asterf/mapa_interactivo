@@ -1,0 +1,36 @@
+/* Estilo para el título personalizado */
+.custom-title {
+    color: blue; /* Cambiar el color del texto a azul */
+  }
+button{
+    padding:6px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+google-map{
+    margin-top: 10px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-container {
+  border-radius: 10px; 
+  border: 1px solid #d6d6d6; 
+  padding: 10px; 
+}
+
+
+
+.fullscreen-div {
+  height: 100%;
+  width: 100%;
+}
+
+.form-inputs{
+  margin-left: 10px;
+  margin-right: 10px;
+}

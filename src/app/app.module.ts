@@ -6,6 +6,21 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { InformacionComponent } from './components/informacion/informacion.component';
+import { ProyectosComponent } from './components/proyectos/proyectos.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 
 
 @NgModule({
@@ -13,13 +28,28 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MapaComponent
+    MapaComponent,
+    InformacionComponent,
+    ProyectosComponent
   ],
   imports: [
     BrowserModule,
     GoogleMapsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    MatToolbarModule, 
+    MatButtonModule, 
+    MatIconModule,
+    MatSidenavModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatDividerModule,
+    MatButtonModule, 
+    MatListModule,
+    MatDialogModule],
   providers: [],
   bootstrap: [AppComponent]
 })
