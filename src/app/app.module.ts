@@ -15,6 +15,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { InformacionComponent } from './components/informacion/informacion.component';
+import { ProyectosComponent } from './components/proyectos/proyectos.component';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 
 
 @NgModule({
@@ -22,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MapaComponent
+    MapaComponent,
+    InformacionComponent,
+    ProyectosComponent
   ],
   imports: [
     BrowserModule,
@@ -37,8 +45,11 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    FormsModule
-    ],
+    FormsModule,
+    MatDividerModule,
+    MatButtonModule, 
+    MatListModule,
+    MatDialogModule],
   providers: [],
   bootstrap: [AppComponent]
 })

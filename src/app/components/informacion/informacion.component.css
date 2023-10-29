@@ -1,0 +1,17 @@
+.alineado-derecha { 
+    position: absolute;
+    top: 8px;
+    right: 8px; 
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.alineado-isquierda {
+    justify-content: flex-start;
+}
+
+.img-container {
+    text-align: center;
+  }

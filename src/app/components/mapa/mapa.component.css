@@ -29,3 +29,8 @@ google-map{
   height: 100%;
   width: 100%;
 }
+
+.form-inputs{
+  margin-left: 10px;
+  margin-right: 10px;
+}

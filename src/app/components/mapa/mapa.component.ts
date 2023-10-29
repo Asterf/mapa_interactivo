@@ -3,6 +3,8 @@ import { Ong } from 'src/app/models/Ong';
 import { OngService } from 'src/app/services/ong.service';
 import Swal from 'sweetalert2';
 import { MatDrawer } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material/dialog';
+import { InformacionComponent } from '../informacion/informacion.component';
 
 @Component({
   selector: 'app-mapa',
@@ -15,6 +17,7 @@ export class MapaComponent {
   @HostListener('window:resize', ['$event']) onResize(event: any): void {this.isMobile = window.innerWidth < 700; }
 
   ongs: Ong[]; 
+  iconBase:string ="https://developers.google.com/static/maps/documentation/javascript/images/default-marker.png?hl=es-419";
   markerClustererImagePath = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m';
   center;
   zoom: number;
@@ -24,7 +27,7 @@ export class MapaComponent {
   listProvincias:String[];
 
   
-  constructor(private ongService: OngService) {
+  constructor(private ongService: OngService,public dialog: MatDialog) {
     this.ongs=[];
     this.zoom=  6.5;
     this.center= {lat:-13.515271483270629, lng: -71.97872042823884};
@@ -80,20 +83,25 @@ export class MapaComponent {
 
 
 
-//Personalización del marcardor
-iconBase:string ="https://developers.google.com/static/maps/documentation/javascript/images/default-marker.png?hl=es-419";
-text:string = "<p>Telefono: 123456</p> <p>Correo: test@gmail.com</p>"
-//Función para generar ventana de información
 openInfoWindow(ong: Ong) {
-  Swal.fire({
-    title: ong.nombre_institucion,
-    html: this.text,
-    // text: "Email: "+ ong.correo + "\n\nTeléfono: "+ong.celular[0]+"\nDirección: "+ong.direccion.detalle,
-    imageUrl: ong.dir_image,
-    imageWidth: 400,
-    imageHeight: 200,
-    imageAlt: "Image",
-  })
+  this.dialog.closeAll();
+  const dialogRef = this.dialog.open(InformacionComponent, {
+      width: '450px',
+      data: ong,
+      height: '550px',
+      hasBackdrop: false
+    });
+
+  
+  // Swal.fire({
+  //   title: ong.nombre_institucion,
+  //   html: this.text,
+  //   // text: "Email: "+ ong.correo + "\n\nTeléfono: "+ong.celular[0]+"\nDirección: "+ong.direccion.detalle,
+  //   imageUrl: ong.dir_image,
+  //   imageWidth: 400,
+  //   imageHeight: 200,
+  //   imageAlt: "Image",
+  // })
 }
 
 
