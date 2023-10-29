@@ -84,6 +84,9 @@ export class MapaComponent {
 
 
 openInfoWindow(ong: Ong) {
+  this.center = {lat:ong.cordenadas.lat,lng:ong.cordenadas.lng};
+  this.zoom=8.5;
+
   this.dialog.closeAll();
   const dialogRef = this.dialog.open(InformacionComponent, {
       width: '450px',
