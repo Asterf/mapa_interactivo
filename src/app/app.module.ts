@@ -6,6 +6,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,8 +27,18 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     GoogleMapsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    MatToolbarModule, 
+    MatButtonModule, 
+    MatIconModule,
+    MatSidenavModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

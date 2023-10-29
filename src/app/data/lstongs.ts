@@ -1,4 +1,6 @@
-import { Ong } from "./Ong"
+import { Ong } from "../models/Ong";
+//CRE QUE FALTABA 2 CORDENADAS
+/*
 export var arrayOngs:Ong[] = [{index: 1.0,
   nombre_institucion: 'ASOCIACIÓN RUWAN PERU',
   tipo_entidad: '0NGD',
@@ -572,3 +574,4 @@ export var arrayOngs:Ong[] = [{index: 1.0,
    'SAHEE FOUNDATION'],
   cordenadas: {lat: -13.5129569640445, lng: -71.9752754612179},
   dir_image: '../assets/images/ASOCIACION PUKLLASUNCHIS.jpeg'}]
+  */

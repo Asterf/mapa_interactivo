@@ -1,25 +1,4 @@
-<google-map [center]="center" [zoom]="zoom" width="80%" height="600px"> 
-  <ng-container>
-    <map-marker #marker="mapMarker"
-      *ngFor="let ong of arrayOneges"
-      [label]="{
-        color:'black',
-        text:' '
-      }"
-      [position]="ong.cordenadas"
-      [title]="ong.nombre_institucion"
-      [icon]="iconBase"
-      (mapClick)="openInfoWindow(ong)" 
-      >
-      <map-info-window #infoWindow="mapInfoWindow"> 
-        Content of {{ong.proyectos[0].nombre_proyecto}}
-      </map-info-window>
-    </map-marker>
-  </ng-container>
-</google-map>
-<header>
-  <app-header></app-header>
-</header>
+
 
 <div class="content">
   <app-mapa></app-mapa>
