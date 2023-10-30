@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { OngService } from 'src/app/services/ong.service';
 import { Ong } from 'src/app/models/Ong';
 
 @Component({
@@ -8,13 +8,20 @@ import { Ong } from 'src/app/models/Ong';
   styleUrls: ['./proyectos.component.css']
 })
 export class ProyectosComponent {
+  ongsList: Ong[] = [];
 
-  ong:Ong;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog) {
-    this.ong=data;
+  constructor(private ongService: OngService) { }
+  capitalizeText(text: string): string {
+    return text
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
-
-  ngOnInit() {
-    console.log(this.ong)
+  
+  ngOnInit(): void {
+    this.ongService.listOngs().subscribe(ongs => {
+      this.ongsList = ongs;
+    });
   }
 }

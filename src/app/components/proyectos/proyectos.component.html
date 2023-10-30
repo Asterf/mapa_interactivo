@@ -1,6 +1,37 @@
-<h1>PROYECTOS: </h1>
-<mat-list role="list" >
-    <mat-list-item *ngFor="let proyecto of ong.proyectos" role="listitem" >
-         {{ proyecto.nombre_proyecto }}
-    </mat-list-item>
-</mat-list>
+<div class="title">
+    <h2>Proyectos</h2>
+</div>
+<div class="contenedor-con-barra ">
+    <div *ngFor="let ong of ongsList">
+        <div class="mb-2" *ngFor="let proyecto of ong.proyectos">
+            <div class="card" *ngIf="proyecto.nombre_proyecto != ''">
+              <div class="card-body">
+                <h5 style="font-size: 15px; font-weight: bold;" class="card-title">
+                    {{capitalizeText(proyecto.nombre_proyecto)}}
+                </h5>
+                <p style="font-size: 13px; margin-bottom: 2px; font-style: italic; margin-bottom: 10px;">
+                    Estado del proyecto: {{proyecto.estado}}
+                </p>
+                <div class="info-card">
+                    <div class="objetivos-card">
+                        <p class="text-card" *ngFor="let objetivo of proyecto.objetivos">
+                            - {{objetivo}}
+                        </p>
+                    </div>
+                    <div class="icons-card">
+                        <i class="fa-solid fa-people-group" *ngIf="proyecto.total_benef != 'nan'">
+                            <span>Beneficiarios: {{proyecto.total_benef}}</span>
+                        </i>    
+                        <i class="fa-solid fa-coins">
+                            <span>Presupuesto: {{proyecto.presupuesto}}</span>
+                        </i>
+                        <i class="fa-regular fa-calendar">
+                            <span>Periodo: De {{proyecto.periodo_ejecucion.inicio}} a {{proyecto.periodo_ejecucion.fin}}</span>
+                        </i>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>          
+    </div>
+</div>

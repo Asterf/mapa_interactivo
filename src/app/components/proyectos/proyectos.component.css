@@ -1,0 +1,40 @@
+.title{
+    margin-bottom: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.contenedor-con-barra {
+    width: 100%; /* Ajusta el ancho del contenedor según tus necesidades */
+    height: 830px; /* Ajusta la altura del contenedor según tus necesidades */
+    overflow-y: scroll; /* Agrega una barra de desplazamiento vertical */
+    font-family: sans-serif;
+  }
+.text-card{
+    font-size: 12px;
+}
+span{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 5px;
+    margin-right: 10px;
+    font-size: 10px;
+}
+i{
+    margin-bottom: 10px;
+}
+.carta {
+    margin: 10px; /* Espacio entre cartas, ajusta según tus necesidades */
+    padding: 10px;
+    background-color: #f0f0f0; /* Estilo de fondo de la carta */
+    border: 1px solid #ddd; /* Borde de la carta */
+    /* Otros estilos de las cartas según tus preferencias */
+}
+.info-card{
+    display: flex;
+}
+.objetivos-card{
+    width: 100%;
+}
+.icons-card{
+    margin-left: 10px;
+    width: 50%;
+}
+  

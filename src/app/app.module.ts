@@ -30,7 +30,7 @@ import { MatListModule } from '@angular/material/list';
     FooterComponent,
     MapaComponent,
     InformacionComponent,
-    ProyectosComponent
+    ProyectosComponent,
   ],
   imports: [
     BrowserModule,
