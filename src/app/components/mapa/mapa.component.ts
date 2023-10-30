@@ -1,10 +1,11 @@
 import { Component, ViewChild,HostListener  } from '@angular/core';
 import { Ong } from 'src/app/models/Ong';
 import { OngService } from 'src/app/services/ong.service';
-import Swal from 'sweetalert2';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
 import { InformacionComponent } from '../informacion/informacion.component';
+import { ProvinciasService } from 'src/app/services/provincias.service';
+import { Ubigeo } from 'src/app/models/ubigeo';
 
 @Component({
   selector: 'app-mapa',
@@ -17,21 +18,26 @@ export class MapaComponent {
   @HostListener('window:resize', ['$event']) onResize(event: any): void {this.isMobile = window.innerWidth < 700; }
 
   ongs: Ong[]; 
+  itemSelectet:string[];
   iconBase:string ="https://developers.google.com/static/maps/documentation/javascript/images/default-marker.png?hl=es-419";
   markerClustererImagePath = 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m';
   center;
   zoom: number;
-  selectedValue = 'todos'; 
+  selectedValue = 'ong'; 
   selectedProvincia= "";
   textobuscar = '';
   listProvincias:String[];
 
   
-  constructor(private ongService: OngService,public dialog: MatDialog) {
+  constructor(
+              private ongService: OngService,
+              public dialog: MatDialog,
+              private provinciaService: ProvinciasService) {
     this.ongs=[];
     this.zoom=  6.5;
     this.center= {lat:-13.515271483270629, lng: -71.97872042823884};
     this.listProvincias = [];
+    this.itemSelectet=[];
    }
 
    ngOnInit() {
@@ -51,9 +57,19 @@ export class MapaComponent {
 
   filtrarPorProvincia(provincia:string)
   {
-    this.ongService.getOngByProvincia(provincia).subscribe((ongs) => {
-      this.ongs = ongs;
-    });
+    if(this.selectedValue=="ong")
+    {
+      console.log("ong");
+      this.ongService.getOngByProvincia(provincia).subscribe((ongs) => {
+        this.ongs = ongs;
+      });
+    }
+    else {
+      console.log("proyecto: "+provincia)
+      this.ongService.getProyectoBypProvincia(provincia).subscribe((ongs) => {
+        this.ongs = ongs;
+      });
+    }
   }
 
   listarProvinvias()
@@ -66,22 +82,12 @@ export class MapaComponent {
 
     }
     else {
-      if(this.selectedValue=="ong")
-      {
         this.ongService.getOngProvincias().subscribe((ongs) => {
           this.listProvincias = this.eliminarRepetidos(ongs);
         });
-      }
-      else{
-        this.ongService.getTodasProvincias().subscribe((ongs) => {
-          this.listProvincias = this.eliminarRepetidos(ongs);
-        });
-      }
     }
     
   }
-
-
 
 openInfoWindow(ong: Ong) {
   this.center = {lat:ong.cordenadas.lat,lng:ong.cordenadas.lng};
@@ -95,24 +101,12 @@ openInfoWindow(ong: Ong) {
       hasBackdrop: false
     });
 
-  
-  // Swal.fire({
-  //   title: ong.nombre_institucion,
-  //   html: this.text,
-  //   // text: "Email: "+ ong.correo + "\n\nTeléfono: "+ong.celular[0]+"\nDirección: "+ong.direccion.detalle,
-  //   imageUrl: ong.dir_image,
-  //   imageWidth: 400,
-  //   imageHeight: 200,
-  //   imageAlt: "Image",
-  // })
 }
-
 
 toggleDrawer() {
   if (this.drawer.opened) {
     this.drawer.close();
   } else {
-    // Personaliza la animación de cierre para el modo 'over' o 'push'
     this.drawer.open();
   }
 }
@@ -125,10 +119,16 @@ eliminarRepetidos(lista: String[]): String[] {
 }
 
 buscarOng(){
-  this.filtrarPorProvincia(this.selectedProvincia);
+
+  let provSelec= this.itemSelectet[0];
+  this.filtrarPorProvincia(provSelec);
   if(this.ongs.length>0)
   {
-    this.center = {lat:this.ongs[0].cordenadas.lat, lng:this.ongs[0].cordenadas.lng};
+    if(provSelec.toUpperCase()=="CUSCO")
+    {
+      this.center = {lat:this.ongs[1].cordenadas.lat, lng:this.ongs[1].cordenadas.lng};
+    }
+    else{this.center = {lat:this.ongs[0].cordenadas.lat, lng:this.ongs[0].cordenadas.lng};}
     this.zoom=8;
   }else{
     this.center= {lat:-13.515271483270629, lng: -71.97872042823884};
