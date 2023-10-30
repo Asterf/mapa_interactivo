@@ -20,8 +20,15 @@ export class OngService {
   }
 
   
+  //FILTRO
   getOngByProvincia(provincia: string): Observable<Ong[]> {
     return of(this.ongs.filter(ong => ong.direccion.provincia.toLowerCase() === provincia.toLowerCase()));
+  }
+  getProyectoBypProvincia(distrito: string): Observable<Ong[]> {
+    const ongsWithProvincia = this.ongs.filter(ong => {
+      return ong.proyectos.some(proyecto => proyecto.ambito_intervencion.distrito.toLowerCase() === distrito.toLowerCase());
+    });
+    return of(ongsWithProvincia);
   }
 
   getOngProvincias(): Observable<String[]> {
@@ -33,7 +40,7 @@ export class OngService {
 
     this.ongs.forEach((ong) => {
       ong.proyectos.forEach((proyecto) => {
-        provinciasUnicas.add(proyecto.ambito_intervencion.provincia);
+        provinciasUnicas.add(proyecto.ambito_intervencion.distrito);
       });
     });
     return of(Array.from(provinciasUnicas));
@@ -45,7 +52,7 @@ export class OngService {
   
     this.ongs.forEach(ong => {
       ong.proyectos.forEach(proyecto => {
-        lista2.add(proyecto.ambito_intervencion.provincia);
+        lista2.add(proyecto.ambito_intervencion.distrito);
       });
     });
     let listaUnica = Array.from(new Set([...lista1, ...lista2]));

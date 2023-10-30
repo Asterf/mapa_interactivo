@@ -6,18 +6,17 @@
       <mat-form-field class="form-inputs">
         <mat-label>Seleccione</mat-label>
         <mat-select [(value)]="selectedValue" (selectionChange)="listarProvinvias()">
-          <mat-option value="todos" aria-selected="true" >Todos</mat-option>
-          <mat-option value="ong">ONG</mat-option>
+          <mat-option value="ong" aria-selected="true">ONG</mat-option>
           <mat-option value="proyectos">Proyectos</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="form-inputs">
+      <!--<mat-form-field class="form-inputs">
         <mat-label>Seleccione</mat-label>
         <mat-select [(value)]="selectedProvincia" (selectionChange)="buscarOng()">
           <mat-option *ngFor="let provincia of listProvincias" [value]="provincia">{{ provincia }}</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field>-->
 
       <mat-form-field class="form-inputs">
         <mat-label>Buscar:</mat-label>
@@ -33,19 +32,19 @@
   <mat-drawer-container class="example-container">
     <mat-drawer  #drawer *ngIf="!isMobile"  [mode]="'side'" [opened]="true"  [style.width.px]="350" class="map-container">
       <div >
-      <!-- Contenido del cajón (drawer) -->
-      Lista de provincias
+        <mat-selection-list #shoes [multiple]="false" [(ngModel)]="itemSelectet" (selectionChange)="buscarOng()">
+          <mat-list-option *ngFor="let provincia of listProvincias" [value]="provincia">
+            {{ provincia }}
+          </mat-list-option>
+        </mat-selection-list>
       </div>
-  
     </mat-drawer>
+
     <mat-drawer-content >
       <div style="margin-left: 15px; margin-right: 15px;">
         <div class="map-container">
           <google-map [center]="center" [zoom]="zoom" width="100%" height="80vh" > 
             <map-marker-clusterer [imagePath]="markerClustererImagePath">
-              <map-marker #firstMarker="mapMarker" 
-                [position]="center">
-              </map-marker>
               <map-marker #marker="mapMarker"
                 *ngFor="let ong of ongs"
                 [label]="{
