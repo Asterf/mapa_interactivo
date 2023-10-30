@@ -15,7 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { InformacionComponent } from './components/informacion/informacion.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
 import {MatDividerModule} from '@angular/material/divider';
@@ -50,7 +50,8 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule, 
     MatListModule,
     MatDialogModule],
-  providers: [],
+  providers: [{provide: MAT_DIALOG_DATA, useValue:{}},
+  {provide:MatDialogRef, useValue:{}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

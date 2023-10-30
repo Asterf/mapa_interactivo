@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { OngService } from 'src/app/services/ong.service';
 import { Ong } from 'src/app/models/Ong';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-proyectos',
@@ -9,8 +10,11 @@ import { Ong } from 'src/app/models/Ong';
 })
 export class ProyectosComponent {
   ongsList: Ong[] = [];
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private ongService: OngService) {
+    // En este punto, puedes acceder a data para obtener los datos pasados.
+    console.log('Datos pasados:', data);
+  }
 
-  constructor(private ongService: OngService) { }
   capitalizeText(text: string): string {
     return text
       .toLowerCase()

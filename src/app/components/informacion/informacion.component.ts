@@ -2,7 +2,6 @@ import { Component,Inject  } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Ong } from 'src/app/models/Ong';
 import { ProyectosComponent } from '../proyectos/proyectos.component';
-
 @Component({
   selector: 'app-informacion',
   templateUrl: './informacion.component.html',
