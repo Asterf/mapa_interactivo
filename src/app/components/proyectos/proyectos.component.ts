@@ -16,12 +16,20 @@ export class ProyectosComponent {
   }
 
   capitalizeText(text: string): string {
-    return text
-      .toLowerCase()
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+    const words = text.toLowerCase().split(' ');
+    const capitalizedWords = words.map(word => {
+      if (word.length > 3) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      } else if(word == "ii"){
+        return "II"
+      }
+       else{
+        return word;
+      }
+    });
+    return capitalizedWords.join(' ');
   }
+  
   
   ngOnInit(): void {
     this.ongService.listOngs().subscribe(ongs => {
