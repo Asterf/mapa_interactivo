@@ -18,7 +18,7 @@ export class ProyectosComponent {
   capitalizeText(text: string): string {
     const words = text.toLowerCase().split(' ');
     const capitalizedWords = words.map(word => {
-      if (word.length > 3) {
+      if (word.length > 3 || word.toLowerCase() == text.toLowerCase().split(' ')[0]) {
         return word.charAt(0).toUpperCase() + word.slice(1);
       } else if(word == "ii"){
         return "II"

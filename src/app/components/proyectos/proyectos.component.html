@@ -25,11 +25,19 @@
                         <span>Presupuesto: {{proyecto.presupuesto}}</span>
                     </i>
                     <i class="fa-regular fa-calendar">
-                        <span>Periodo: De {{proyecto.periodo_ejecucion.inicio}} a {{proyecto.periodo_ejecucion.fin}}</span>
+                        <strong>
+                            <span>Periodo: De {{proyecto.periodo_ejecucion.inicio}} a {{proyecto.periodo_ejecucion.fin}}</span>
+                        </strong>
                     </i>
                 </div>
             </div>
-            </div>
+            <div class="card-footer bg-transparent">
+                <strong style="font-size: 10px;">Sectores:</strong>
+                <span style="font-size: 10px;">
+                    {{capitalizeText(proyecto.sector.join(' - '))}}
+                </span>
+            </div>            
         </div>
     </div>          
 </div>
+
