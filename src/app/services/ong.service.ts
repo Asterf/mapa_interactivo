@@ -30,6 +30,15 @@ export class OngService {
     });
     return of(ongsWithProvincia);
   }
+  getProyectoBySector(sector:string):Observable<Ong[]>{
+
+    // Filtrar las ONGs que tienen al menos un proyecto con el sector buscado
+    const ongsFiltradas = this.ongs.filter((ong) =>
+      ong.proyectos.some((proyecto) => proyecto.sector.includes(sector))
+    );
+    console.log(ongsFiltradas)
+    return of(ongsFiltradas);
+  }
 
   getOngProvincias(): Observable<String[]> {
     return of(this.ongs.map(ong => ong.direccion.provincia));
@@ -44,6 +53,18 @@ export class OngService {
       });
     });
     return of(Array.from(provinciasUnicas));
+  }
+  
+  getSectores(){
+    const sectoresUnicos = new Set<string>();
+    for (const ong of this.ongs) {
+      for (const proyecto of ong.proyectos) {
+        for (const sector of proyecto.sector) {
+          sectoresUnicos.add(sector);
+        }
+      }
+    }
+    return Array.from(sectoresUnicos);
   }
 
   getTodasProvincias(): Observable<string[]> {

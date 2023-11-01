@@ -64,9 +64,15 @@ export class MapaComponent {
         this.ongs = ongs;
       });
     }
-    else {
+    else if(this.selectedValue=='proyectos'){
       console.log("proyecto: "+provincia)
       this.ongService.getProyectoBypProvincia(provincia).subscribe((ongs) => {
+        this.ongs = ongs;
+      });
+    }
+    else{
+      console.log("Sector: "+provincia)
+      this.ongService.getProyectoBySector(provincia).subscribe((ongs) => {
         this.ongs = ongs;
       });
     }
@@ -81,10 +87,16 @@ export class MapaComponent {
       });
 
     }
-    else {
+    else if(this.selectedValue=='ong'){
         this.ongService.getOngProvincias().subscribe((ongs) => {
           this.listProvincias = this.eliminarRepetidos(ongs);
         });
+    }
+    else{
+      this.listProvincias = this.ongService.getSectores()
+      // this.ongService.getSectores().subscribe((ongs) => {
+      //   this.listProvincias = this.eliminarRepetidos(ongs);
+      // });
     }
     
   }
