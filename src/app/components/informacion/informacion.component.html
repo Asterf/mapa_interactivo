@@ -1,0 +1,66 @@
+
+<p style="padding-right: 40px; padding-left: 10px; padding-top: 10px;">{{ong.nombre_institucion}}</p>
+<mat-icon fontIcon="cancel" aria-hidden="false" mat-dialog-close class="alineado-derecha">X</mat-icon>
+<mat-divider></mat-divider>
+
+<div class="img-container" style="padding-top: 10px;"> 
+    <img src="{{ong.dir_image}}" alt="John Doe" width="430px" height="180px">
+</div>
+
+
+<div class="container">
+    <table>
+        <tr >
+            <td style="width: 180px; vertical-align: middle;"><p><strong> 
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="email" style="padding-top: 5px;"></mat-icon>
+                Email: </strong></p></td>
+            <td style="width: 400px;">
+                <mat-list role="list"  style="margin: 0; padding: 0;">
+                    <mat-list-item *ngFor="let elemento of ong.correo" role="listitem"  style="margin: 0; padding: 0; height: 20px;">
+                         {{ elemento }}
+                    </mat-list-item>
+                </mat-list>
+            </td>
+        </tr>
+        <tr >
+            <td><p><strong> 
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="settings_phone"  style="padding-top: 5px;"></mat-icon>
+                Telefono: </strong></p></td>
+            <td>
+                <mat-list role="list"  style="margin: 0; padding: 0;">
+                    <mat-list-item *ngFor="let elemento of ong.telefono" role="listitem"  style="margin: 0; padding: 0; height: 20px;">
+                         {{ elemento }}
+                    </mat-list-item>
+                </mat-list>
+
+            </td>
+        </tr>
+        <tr >
+            <td><p><strong>
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"  style="padding-top: 5px;">asdadsa</mat-icon>
+                 Direccion: </strong></p></td>
+            <td>
+                <mat-list role="list" style="margin: 0; padding: 0;">
+                    <mat-list-item  style="margin: 0; padding: 0; height: 20px;">{{  ong.direccion.provincia }} - {{  ong.direccion.distrito }}</mat-list-item>
+                    <mat-list-item  style="margin: 0; padding: 0; height: 20px;">{{  ong.direccion.detalle }}</mat-list-item>
+                </mat-list>
+            </td>
+        </tr>
+
+        <tr >
+            <td><p><strong>
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="web"  style="padding-top: 5px;">asdadsa</mat-icon>
+                 Web: </strong></p></td>
+            <td>
+                <a href="{{ ong.enlace_web }}">Visitar</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<mat-divider></mat-divider>
+<div class="img-container" style="margin-top: 10px;">
+    <button mat-fab extended color="primary" (click)="verProyectos()">
+      <mat-icon>work</mat-icon> Proyectos </button>
+</div>
+

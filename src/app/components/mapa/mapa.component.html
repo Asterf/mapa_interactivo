@@ -1,0 +1,74 @@
+<div class="fullscreen-div">
+  <header><app-header (clickEvent)="toggleDrawer()"></app-header></header>
+
+  <div class="center-container">
+    <form class="example-form">
+      <mat-form-field class="form-inputs">
+        <mat-label>Seleccione</mat-label>
+        <mat-select [(value)]="selectedValue" (selectionChange)="listarProvinvias()">
+          <mat-option value="ong" aria-selected="true">ONG</mat-option>
+          <mat-option value="proyectos">Proyectos</mat-option>
+          <mat-option value="sectores">Sectores</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--<mat-form-field class="form-inputs">
+        <mat-label>Seleccione</mat-label>
+        <mat-select [(value)]="selectedProvincia" (selectionChange)="buscarOng()">
+          <mat-option *ngFor="let provincia of listProvincias" [value]="provincia">{{ provincia }}</mat-option>
+        </mat-select>
+      </mat-form-field>-->
+
+      <mat-form-field class="form-inputs">
+        <mat-label>Buscar:</mat-label>
+        <input matInput [(ngModel)]="textobuscar" name="textobuscar" placeholder="ejemplo cusco">
+      </mat-form-field>
+  
+      <button class="form-inputs" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"  (click)="buscarOng()" >
+        <mat-icon>find_in_page</mat-icon>
+      </button>
+    </form>
+  </div>
+  
+  <mat-drawer-container class="example-container">
+    <mat-drawer  #drawer *ngIf="!isMobile"  [mode]="'side'" [opened]="true"  [style.width.px]="350" class="map-container">
+      <div >
+        <mat-selection-list #shoes [multiple]="false" [(ngModel)]="itemSelectet" (selectionChange)="buscarOng()">
+          <mat-list-option *ngFor="let provincia of listProvincias" [value]="provincia">
+            {{ provincia }}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+    </mat-drawer>
+
+    <mat-drawer-content >
+      <div style="margin-left: 15px; margin-right: 15px;">
+        <div class="map-container">
+          <google-map [center]="center" [zoom]="zoom" width="100%" height="80vh" > 
+            <map-marker-clusterer [imagePath]="markerClustererImagePath">
+              <map-marker #marker="mapMarker"
+                *ngFor="let ong of ongs"
+                [label]="{
+                  color:'black',
+                  text:' '
+                }"
+                [position]="ong.cordenadas"
+                [title]="ong.nombre_institucion"
+                [icon]="iconBase"
+                (mapClick)="openInfoWindow(ong)" 
+                >
+                <map-info-window #infoWindow="mapInfoWindow"> 
+                  Content of {{ong.proyectos[0].nombre_proyecto}}
+                </map-info-window>
+              </map-marker>
+            </map-marker-clusterer>
+          </google-map>
+        </div>
+      </div>
+      
+      
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
+
+

@@ -1,0 +1,9 @@
+.contenedor {
+    display: flex;
+  }
+  
+  .columna {
+    flex: 1;
+    padding: 10px; /* Opcional: agregar espaciado entre las columnas */
+  }
+  
